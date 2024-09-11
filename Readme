@@ -1,0 +1,10 @@
+## Workflow for Deploying Container
+
+Whenever code is pushed to the master/main branch and this commit contains a change to the 'container' folder
+
+=> (Commands executed in a virtual machine hosted by Github)
+
+1. Change into container folder
+2. Install dependencies
+3. Create a production build using webpack
+4. Upload the result to AWS S3
