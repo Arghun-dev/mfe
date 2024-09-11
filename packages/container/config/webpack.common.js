@@ -1,3 +1,6 @@
+// This is going to take some kind of HTML file and inject couple of script tags into it
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
   module: {
     // inside rules array we can add loaders
@@ -22,4 +25,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
 };
