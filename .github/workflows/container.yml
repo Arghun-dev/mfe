@@ -16,33 +16,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - uses: actions/checkout@v2
-
-      # Step 2: Install dependencies
       - run: npm install
-
-      # Step 3: Build the application
       - run: npm run build
 
-      # Step 4: Verify AWS CLI version to ensure it's installed
-      - run: aws --version
-
-      # Step 5: List the files in dist to ensure build output exists
-      - run: ls -al dist
-
-      # Step 6: Configure AWS credentials
-      - uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: <your-region> # Replace with your AWS region (e.g., us-west-2)
-
-      # Step 7: Verify access to the S3 bucket
-      - run: aws s3 ls s3://${{ secrets.AWS_S3_BUCKET_NAME }}
-
-      # Step 8: Sync the dist directory to the S3 bucket
-      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest --no-progress
-
-      # Step 9: Debug identity (optional but helpful)
-      - run: aws sts get-caller-identity
+      - uses: shinyinc/action-aws-cli@v1.2
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest --debug
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
