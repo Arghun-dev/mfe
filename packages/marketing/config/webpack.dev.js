@@ -14,7 +14,7 @@ const devConfig = {
     port: 8081,
     // This is going to tell the dev server to serve up the index.html file if it can't find a file at the specified path
     historyApiFallback: {
-      index: "index.html",
+      index: "/index.html",
     },
   },
   plugins: [
