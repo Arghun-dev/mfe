@@ -8,3 +8,11 @@ Whenever code is pushed to the master/main branch and this commit contains a cha
 2. Install dependencies
 3. Create a production build using webpack
 4. Upload the result to AWS S3
+
+## Wrap up
+
+1. Your requirements drive your architecture
+2. Always ask yourself "if I have to change this in the future, will I have to change another app?"
+3. Everyone will eventually forget React
+4. Don't forget to scope your CSS
+5. MFE's might cause issues in production that you don't see in Dev
